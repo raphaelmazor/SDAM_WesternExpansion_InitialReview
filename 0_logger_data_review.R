@@ -2,14 +2,23 @@ library(tidyverse)
 library(data.table)
 library(lubridate)
 library(skimr)
+library(DBI) # needed to connect to data.dfbase
+library(dbplyr) # needed to connect to data.dfbase
+library(RPostgreSQL) # needed to connect to our data.dfbase
+library(rstudioapi) # just so we can type the password as we run the script, so it is not written in the clear
+library(tidyverse)
+library(lubridate)
 
+
+##### METHOD DEVELOPMENT SITES - Read in site data for methods development sites ####
+
+#Identify Wesetern databases
 myDBs<-c("WMBR_1_1","WEx_SDAM_0","WMBR_2","WMV_1","FD003","FD004") 
 
-#### MAIN - Read in main site data table and filter for GP sites ####
 junk<-read_csv("https://sdamchecker.sccwrp.org/checker/download/main-all") 
+#### MAIN - Read in main site data table and filter for Western sites ####
 main_df<- read_csv("https://sdamchecker.sccwrp.org/checker/download/main-all") %>%
-  # junk%>%
-  # filter(origin_database %in% myDBs) %>%
+  filter(origin_database %in% myDBs) %>%
   transmute( # Align column names to original metric calculator script naming
     Download_date = Sys.time(),
     Database= origin_database,
@@ -182,7 +191,9 @@ main_df<- read_csv("https://sdamchecker.sccwrp.org/checker/download/main-all") %
     #   is.na(ancillarynote) & is.na(additionalnotes) ~ NA_character_,
     #   is.na(ancillarynote) ~additionalnotes, #Other regions have "ancillarynote" field instead of "additionalnotes"
     #   is.na(additionalnotes) ~ ancillarynote),
-    hydrovegenote #NESE
+    hydrovegenote, #NESE
+    l1_pendant_id=l1_pendent_id, l1_sampling_round,l1_deployment,l1_deployment_note,l1_time_deployed_checked,l1_water_depth, l1_temp, l1_specific_conductivity, l1_logger_notes,l1_hydro_conditions,l1_hydro_conditions_notes,
+    l2_pendant_id=l2_pendent_id, l2_sampling_round,l2_deployment,l2_deployment_note,l2_time_deployed_checked,l2_water_depth, l2_temp, l2_specific_conductivity, l2_logger_notes,l2_hydro_conditions,l2_hydro_conditions_notes
   ) %>%
   rowwise() %>%
   mutate(fp_entrenchmentratio_mean=mean(c(fp_entrenchmentratio1,fp_entrenchmentratio2,fp_entrenchmentratio3), na.rm=T),
@@ -193,79 +204,64 @@ main_df<- read_csv("https://sdamchecker.sccwrp.org/checker/download/main-all") %
                                            T~NA_real_)) %>%
   ungroup()
 
-main_df %>%
-  select(SiteCode) %>%
-  unique() %>%
-  arrange(SiteCode) %>%
-  write.table(file="clipboard", sep="\t", row.names = F)
-
-aw_xwalk
-wm_xwalk
-nese_xwalk
-gp_xwalk
-
-combined_xwalk<-
-  main_df %>% select(SiteCode) %>% unique() %>%
-  left_join(
-    bind_rows(
-      aw_xwalk %>%
-        select(SiteCode=SITECODE,Class=Determination_Final) %>%
-        unique(),
-      wm_xwalk %>%
-        select(SiteCode=SITECODE, Class=Determination_Final) %>%
-        unique(),
-      nese_xwalk %>%
-        select(SiteCode=SiteCode, Class=Determination_final) %>%
-        unique(),
-      gp_xwalk %>%
-        select(SiteCode=Site.Code, Class=Class) %>%
-        unique()
-    )) %>%
-      mutate(Class=case_when(Class %in% c("Ephemeral","E")~"E",
-                             Class %in% c("Intermittent","I")~"I",
-                             Class %in% c("Perennial","P")~"P",
-                             Class %in% c("Unknown","U","")~"U",
-                             is.na(Class)~"U",
-                             T~"U"
-      )) %>%
-      unique() %>%
-      arrange(SiteCode) %>%
-      group_by(SiteCode) %>%
-      mutate(n=length(SiteCode)) %>%
-      ungroup() %>%
-      
-      mutate(Region_detail=case_when(str_detect(SiteCode,"AW")~"AW",
-                                     str_detect(SiteCode,"WM")~"WM",
-                                     str_detect(SiteCode,"CB")~"GP_C",
-                                     str_detect(SiteCode,"CV")~"GP_C",
-                                     str_detect(SiteCode,"UB")~"GP_U",
-                                     str_detect(SiteCode,"UV")~"GP_U",
-                                     str_detect(SiteCode,"NB")~"GP_N",
-                                     str_detect(SiteCode,"NV")~"GP_N",
-                                     str_detect(SiteCode,"SB")~"GP_S",
-                                     str_detect(SiteCode,"SV")~"GP_S",
-                                     str_detect(SiteCode,"PR")~"CB",
-                                     str_detect(SiteCode,"VI")~"CB",
-                                     str_detect(SiteCode,"NE")~"NE",
-                                     str_detect(SiteCode,"SE")~"SE",
-                                     T~"Other"),
-             Region=case_when(Region_detail %in% c("AW")~"West",
-                              Region_detail %in% c("WM")~"West",
-                              Region_detail %in% c("GP_C","GP_U","GP_N","GP_S")~"GP",
-                              Region_detail %in% c("NE","SE")~"East",
-                              Region_detail %in% c("CB")~"CB",
-                              T~"Other")
-      ) %>%
-      unique() %>%
-  arrange(SiteCode)
 
 
-combined_xwalk %>%write.table(file="clipboard-1000",sep="\t", row.names = F)
+#Bring in logger calibration data
+logger_cal<-read_csv("https://sdamchecker.sccwrp.org/checker/download/calibration-all") %>%
+  filter(outcome=="Accepted") 
 
-combined_xwalk %>%
-  group_by(Region,Class) %>%  tally()
-group_by(SiteCode) %>% tally() %>% filter(n>1)
+logger_cal %>% group_by(serialnumber) %>% tally() %>% filter(n>1) #Verify that no pendant ID shows up more than once
+
+#Pick a site of interest
+my_site<-"AZAW0014"
+
+#Get logger metadata
+my_logger_metadata<-main_df %>%
+  filter(SiteCode==my_site) %>%
+  select(SiteCode,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l1")) %>%
+  rename_all(~stringr::str_replace(.,"^l1_","")) %>%
+  mutate(LoggerLocation="L1") %>%
+  bind_rows(
+    main_df %>%
+      filter(SiteCode==my_site) %>%
+      select(SiteCode,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l2")) %>%
+      rename_all(~stringr::str_replace(.,"^l2_","")) %>%
+      mutate(LoggerLocation="L2")
+  ) %>%
+  rename(PendantID = pendant_id) %>%
+  #add calibration data
+  left_join(logger_cal %>%
+              select(PendantID=serialnumber,
+                     modalintensity,
+                     meanintensity=intensitysubmerged_mean,
+                     cal_spcond=spcond_uscm_mean) %>%
+              mutate(cutoff = case_when(!is.na(modalintensity) & modalintensity > 0 ~modalintensity,
+                                        !is.na(meanintensity) & meanintensity > 0 ~meanintensity,
+                                        T~NA_real_)
+                     )
+            )
+
+
+#Download all logger data for the site
+my_logger_df<-paste0("https://sdamchecker.sccwrp.org/checker/download/logger_raw-",my_site) %>% read_csv()
+my_logger_df2<-my_logger_df %>%
+  rename(PendantID=login_pendantid) %>%
+  mutate(Date = datetime %>% as_date()
+  ) %>%
+  left_join(    my_logger_metadata %>%
+                  select( PendantID, CollectionDate, )) %>%
+  filter(!is.na(intensity)) %>%
+  mutate(Wet = case_when(!is.na(modalintensity) & modalintensity>0 & intensity > modalintensity~"Wet",
+                         !is.na(modalintensity) & modalintensity>0 & intensity <= modalintensity~"Dry",
+                         !is.na(modalintensity) & modalintensity<0 & intensity > intensitysubmerged_mean ~"Wet",
+                         !is.na(modalintensity) & modalintensity<0 & intensity <= intensitysubmerged_mean ~"Dry",
+                         T~"Other"  )
+  ) %>%
+  arrange()
+my_logger_df2 %>% group_by((Wet)) %>% tally()
+
+ggplot(data=my_logger_df2, aes(x=datetime, y=intensity))+
+  geom_path(aes(color=login_pendantid %>% as.character()))
 
 main_df %>%
-  filter(SiteCode=="NMSB3") %>%
-  select(Database, ParentGlobalID, CollectionDate)
+  filter(is.na(Lat_field)) %>% group_by(Database) %>% tally()
