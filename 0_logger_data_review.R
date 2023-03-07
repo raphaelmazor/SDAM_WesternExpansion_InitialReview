@@ -213,18 +213,18 @@ logger_cal<-read_csv("https://sdamchecker.sccwrp.org/checker/download/calibratio
 logger_cal %>% group_by(serialnumber) %>% tally() %>% filter(n>1) #Verify that no pendant ID shows up more than once
 
 #Pick a site of interest
-my_site<-"AZAW0014"
+my_site<-"AZWM1834"
 
 #Get logger metadata
 my_logger_metadata<-main_df %>%
   filter(SiteCode==my_site) %>%
-  select(SiteCode,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l1")) %>%
+  select(SiteCode,SiteName,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l1")) %>%
   rename_all(~stringr::str_replace(.,"^l1_","")) %>%
   mutate(LoggerLocation="L1") %>%
   bind_rows(
     main_df %>%
       filter(SiteCode==my_site) %>%
-      select(SiteCode,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l2")) %>%
+      select(SiteCode,SiteName,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l2")) %>%
       rename_all(~stringr::str_replace(.,"^l2_","")) %>%
       mutate(LoggerLocation="L2")
   ) %>%
@@ -240,7 +240,7 @@ my_logger_metadata<-main_df %>%
                                         T~NA_real_)
                      )
             )
-
+my_logger_metadata$SiteName
 
 #Download all logger data for the site
 my_logger_df<-paste0("https://sdamchecker.sccwrp.org/checker/download/logger_raw-",my_site) %>% read_csv()
@@ -249,19 +249,55 @@ my_logger_df2<-my_logger_df %>%
   mutate(Date = datetime %>% as_date()
   ) %>%
   left_join(    my_logger_metadata %>%
-                  select( PendantID, CollectionDate, )) %>%
+                  select( PendantID, CollectionDate,cutoff,LoggerLocation )) %>%
   filter(!is.na(intensity)) %>%
-  mutate(Wet = case_when(!is.na(modalintensity) & modalintensity>0 & intensity > modalintensity~"Wet",
-                         !is.na(modalintensity) & modalintensity>0 & intensity <= modalintensity~"Dry",
-                         !is.na(modalintensity) & modalintensity<0 & intensity > intensitysubmerged_mean ~"Wet",
-                         !is.na(modalintensity) & modalintensity<0 & intensity <= intensitysubmerged_mean ~"Dry",
+  mutate(Wet = case_when(intensity > cutoff~"Wet",
+                         intensity <= cutoff~"Dry",
                          T~"Other"  )
   ) %>%
-  arrange()
+  arrange(datetime)
+
 my_logger_df2 %>% group_by((Wet)) %>% tally()
+sum(my_logger_df2$Wet=="Wet")/length(my_logger_df2$Wet)
+max(my_logger_df2$Date - min(my_logger_df2$Date))
 
 ggplot(data=my_logger_df2, aes(x=datetime, y=intensity))+
-  geom_path(aes(color=login_pendantid %>% as.character()))
+  geom_point(aes(color=Wet, shape=PendantID %>% as.character()))+
+  geom_path(aes(group=PendantID %>% as.character()))+
+  geom_hline(data= my_logger_df2 %>%
+               select(LoggerLocation, cutoff) %>%
+               unique(), aes(yintercept=cutoff), color="blue", linetype="dotted")+
+  facet_wrap(~LoggerLocation, ncol=1)
 
-main_df %>%
-  filter(is.na(Lat_field)) %>% group_by(Database) %>% tally()
+
+logger_data_trim_daily_rle<-my_logger_df2 %>%
+  group_by(LoggerLocation, Date) %>%
+  summarise(Wet = case_when(sum(Wet=="Wet")>0~"Wet",T~"Dry")) %>%
+  ungroup() %>%
+  mutate(Logger_WD = paste(LoggerLocation, Wet, sep="_") ) 
+  
+logger_data_trim_daily_rle<-rle(logger_data_trim_daily_rle$Logger_WD) 
+logger_data_trim_daily_rle.df<-
+  data.frame(Value=logger_data_trim_daily_rle$values,
+             Length=logger_data_trim_daily_rle$lengths)
+logger_data_trim_daily_rle.df$LoggerLocation<-sapply(logger_data_trim_daily_rle.df$Value, function(x){
+  str_split(x,"_")[[1]][1] })
+logger_data_trim_daily_rle.df$WetDry<-sapply(logger_data_trim_daily_rle.df$Value, function(x){
+  str_split(x,"_")[[1]][2] })
+
+logger_duration_metrics<-logger_data_trim_daily_rle.df %>%
+  group_by(LoggerLocation) %>%
+  summarise(Wetfor7d = sum(Length[WetDry=="Wet"]>=7),
+            Wetfor14d = sum(Length[WetDry=="Wet"]>=14),
+            Wetfor28d = sum(Length[WetDry=="Wet"]>=28),
+            Wetfor56d = sum(Length[WetDry=="Wet"]>=56),
+            Wetfor100d = sum(Length[WetDry=="Wet"]>=100),
+            Wetfor200d = sum(Length[WetDry=="Wet"]>=200),
+            Wetfor365d = sum(Length[WetDry=="Wet"]>=365),
+            LongestWet=max(Length[WetDry=="Wet"], na.rm=T),
+            LongestDry=max(Length[WetDry=="Dry"], na.rm=T),
+  )
+logger_duration_metrics
+
+logger_data_trim_daily_rle.df %>%
+  filter(LoggerLocation=="L1")
