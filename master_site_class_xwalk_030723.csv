@@ -80,22 +80,22 @@ AZWM0122,P,WM,West,
 AZWM0123,I,WM,West,
 AZWM0124,P,WM,West,
 AZWM1588,E,WM,West,
-AZWM1589,U,WM,West,
+AZWM1589,U,WM,West,Review more closely. Longest flow is ~25 days but there are a lot of them back to back. Tentative I.
 AZWM1590,E,WM,West,
 AZWM1591,E,WM,West,
-AZWM1834,U,WM,West,
+AZWM1834,I,WM,West,Q&D Interpretation of logger data and field observations of drying
 AZWM1842,E,WM,West,
 AZWM1843,E,WM,West,
-AZWM1847,U,WM,West,
+AZWM1847,E,WM,West,Q&D Interpretation of logger data
 AZWM1848,E,WM,West,
-AZWM1850,U,WM,West,
+AZWM1850,I,WM,West,Q&D Interpretation of logger data and field observations of drying
 AZWM1853,P,WM,West,
 AZWM1854,I,WM,West,
 AZWM1855,I,WM,West,
-AZWM1866,U,WM,West,
+AZWM1866,U,WM,West,"Review more closely. Longest flow is ~35, so borderline I."
 AZWM1867,E,WM,West,
 CAAW0242,P,AW,West,
-CAAW0243,U,AW,West,
+CAAW0243,U,AW,West,Review more closely. Not much logger data but site visits suggest drying conditions. Tentative I.
 CAAW0244,I,AW,West,
 CAAW0247,P,AW,West,
 CAAW0249,P,AW,West,
@@ -952,8 +952,8 @@ UTWM1875,E,WM,West,
 UTWM1876,U,WM,West,
 UTWM1878,U,WM,West,
 UTWM1879,E,WM,West,
-UTWM9094,U,WM,West,
-UTWM9096,U,WM,West,
+UTWM9094,E,WM,West,Q&D Interpretation of logger data
+UTWM9096,E,WM,West,Q&D Interpretation of logger data
 VANE8895_B,P,NE,East,
 VANE8896_B,I,NE,East,
 VANE8897_B,I,NE,East,
@@ -1015,18 +1015,18 @@ WVNE9104_B,I,NE,East,
 WVNE9105_B,E,NE,East,
 WVNE9106_B,P,NE,East,
 WYAW0753,E,AW,West,
-WYAW1471,U,AW,West,
+WYAW1471,U,AW,West,Review more closesly. Looks I but lots of missing data
 WYAW1472,I,AW,West,
-WYAW1473,U,AW,West,
+WYAW1473,P,AW,West,Q&D Interpretation of logger data
 WYAW1474,I,AW,West,
 WYAW1476,I,AW,West,
-WYAW1477,U,AW,West,
-WYAW1481,U,AW,West,
-WYAW9130,U,AW,West,
-WYAW9131,U,AW,West,
-WYAW9135,U,AW,West,
-WYAW9140,U,AW,West,
-WYAW9141,U,AW,West,
+WYAW1477,U,AW,West,"Review more closely. Looks I, check weather"
+WYAW1481,P,AW,West,Q&D Interpretation of logger data
+WYAW9130,E,AW,West,Q&D Interpretation of logger data
+WYAW9131,E,AW,West,Q&D Interpretation of logger data
+WYAW9135,E,AW,West,Q&D Interpretation of logger data
+WYAW9140,E,AW,West,Q&D Interpretation of logger data
+WYAW9141,E,AW,West,Q&D Interpretation of logger data
 WYCB47,P,GP_C,GP,
 WYCB48,E,GP_C,GP,
 WYCV2921,E,GP_C,GP,
@@ -1050,14 +1050,14 @@ WYWM1494,P,WM,West,
 WYWM1495,P,WM,West,
 WYWM1500,I,WM,West,
 WYWM1510,P,WM,West,
-WYWM1521,U,WM,West,
-WYWM1523,U,WM,West,
+WYWM1521,U,WM,West,"Review more closely. Longest flow is ~43, so borderline I."
+WYWM1523,I,WM,West,Q&D Interpretation of logger data
 WYWM1529,P,WM,West,
 WYWM1530,P,WM,West,
 WYWM1531,P,WM,West,
 WYWM1534,P,WM,West,
 WYWM1535,I,WM,West,
-WYWM1536,U,WM,West,
+WYWM1536,U,WM,West,"Review more closely. Looks I, but does not match field observations (suggests P)"
 WYWM1537,P,WM,West,
 WYWM1540,P,WM,West,
 WYWM1841,E,WM,West,
@@ -1065,8 +1065,8 @@ WYWM1913,E,WM,West,
 WYWM1914,I,WM,West,
 WYWM1915,I,WM,West,
 WYWM1916,I,WM,West,
-WYWM9146,U,WM,West,
-WYWM9147,U,WM,West,
-WYWM9148,U,WM,West,
-WYWM9154,U,WM,West,
-WYWM9155,U,WM,West,
+WYWM9146,U,WM,West,"Review more closely. Longest flow is ~44, so borderline I."
+WYWM9147,I,WM,West,Q&D Interpretation of logger data
+WYWM9148,U,WM,West,"Review. Could be P or I. Some dry periods indicated in both loggers, but may not match field observations"
+WYWM9154,U,WM,West,"Review. Could be P or I. Some dry periods indicated in L1, but none in L2"
+WYWM9155,I,WM,West,Q&D Interpretation of logger data

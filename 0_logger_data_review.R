@@ -213,7 +213,7 @@ logger_cal<-read_csv("https://sdamchecker.sccwrp.org/checker/download/calibratio
 logger_cal %>% group_by(serialnumber) %>% tally() %>% filter(n>1) #Verify that no pendant ID shows up more than once
 
 #Pick a site of interest
-my_site<-"AZWM1834"
+my_site<-"UTWM9094"
 
 #Get logger metadata
 my_logger_metadata<-main_df %>%
@@ -237,6 +237,8 @@ my_logger_metadata<-main_df %>%
                      cal_spcond=spcond_uscm_mean) %>%
               mutate(cutoff = case_when(!is.na(modalintensity) & modalintensity > 0 ~modalintensity,
                                         !is.na(meanintensity) & meanintensity > 0 ~meanintensity,
+                                        is.na(modalintensity) ~ 1984,
+                                        modalintensity<0 ~ 1984,
                                         T~NA_real_)
                      )
             )
@@ -267,8 +269,14 @@ ggplot(data=my_logger_df2, aes(x=datetime, y=intensity))+
   geom_hline(data= my_logger_df2 %>%
                select(LoggerLocation, cutoff) %>%
                unique(), aes(yintercept=cutoff), color="blue", linetype="dotted")+
-  facet_wrap(~LoggerLocation, ncol=1)
+  geom_vline(data=my_logger_metadata, aes(xintercept=CollectionDate), color="orange")+
+  ggtitle(my_site)+
+  facet_wrap(~LoggerLocation, ncol=1)#+
+  # xlim(as_datetime("2021-12-01 01:00:00"),
+       # as_datetime("2022-12-31 23:00:00"))
 
+my_logger_metadata %>% select(LoggerLocation, CollectionDate,hydro_conditions) %>% 
+  arrange(CollectionDate)
 
 logger_data_trim_daily_rle<-my_logger_df2 %>%
   group_by(LoggerLocation, Date) %>%
