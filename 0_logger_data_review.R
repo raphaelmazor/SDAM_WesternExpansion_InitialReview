@@ -15,7 +15,7 @@ library(lubridate)
 #Identify Wesetern databases
 myDBs<-c("WMBR_1_1","WEx_SDAM_0","WMBR_2","WMV_1","FD003","FD004") 
 
-junk<-read_csv("https://sdamchecker.sccwrp.org/checker/download/main-all") 
+# junk<-read_csv("https://sdamchecker.sccwrp.org/checker/download/main-all") 
 #### MAIN - Read in main site data table and filter for Western sites ####
 main_df<- read_csv("https://sdamchecker.sccwrp.org/checker/download/main-all") %>%
   filter(origin_database %in% myDBs) %>%
@@ -213,7 +213,7 @@ logger_cal<-read_csv("https://sdamchecker.sccwrp.org/checker/download/calibratio
 logger_cal %>% group_by(serialnumber) %>% tally() %>% filter(n>1) #Verify that no pendant ID shows up more than once
 
 #Pick a site of interest
-my_site<-"UTWM9094"
+my_site<-"COWM1170"
 
 #Get logger metadata
 my_logger_metadata<-main_df %>%
@@ -271,6 +271,7 @@ ggplot(data=my_logger_df2, aes(x=datetime, y=intensity))+
                unique(), aes(yintercept=cutoff), color="blue", linetype="dotted")+
   geom_vline(data=my_logger_metadata, aes(xintercept=CollectionDate), color="orange")+
   ggtitle(my_site)+
+  # scale_y_sqrt()+
   facet_wrap(~LoggerLocation, ncol=1)#+
   # xlim(as_datetime("2021-12-01 01:00:00"),
        # as_datetime("2022-12-31 23:00:00"))

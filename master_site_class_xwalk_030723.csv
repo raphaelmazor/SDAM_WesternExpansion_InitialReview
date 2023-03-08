@@ -51,10 +51,10 @@ AZAW0055,I,AW,West,
 AZAW0060,I,AW,West,Q&D Interpretation of logger data
 AZAW0065,E,AW,West,
 AZAW0066,E,AW,West,
-AZAW0070,U,AW,West,No logger data?
-AZAW0072,U,AW,West,No logger data?
-AZAW0074,U,AW,West,No logger data?
-AZAW0076,U,AW,West,No logger data?
+AZAW0070,U,AW,West,"Data under HR_R. Likely E, but kinda suggests I too"
+AZAW0072,U,AW,West,Data under HR_BASE. Likely E or I. Review more closesly.
+AZAW0074,U,AW,West,Data under HR_SOLS. Data are ambiguous.
+AZAW0076,U,AW,West,Data under HR_TNC. Likely I but missing calibration data.
 AZAW0081,P,AW,West,
 AZAW0082,E,AW,West,
 AZAW0084,I,AW,West,
@@ -179,27 +179,27 @@ CAWM9007,U,AW,West,
 CAWM9008,U,AW,West,
 COAW0746,E,AW,West,
 COAW0751,I,AW,West,
-COAW0755,U,AW,West,
-COAW0761,U,AW,West,
+COAW0755,I,AW,West,Q&D Interpretation of logger data
+COAW0761,I,AW,West,"Q&D Interpretation of logger data. May be better to review more closely, as one logger shows much more sporadic flow than the other"
 COAW0765,I,AW,West,
 COAW0767,E,AW,West,
 COAW0775,E,AW,West,
 COAW0777,E,AW,West,
-COAW0781,U,AW,West,
+COAW0781,U,AW,West,No logger data available
 COAW0782,E,AW,West,
 COAW0785,P,AW,West,
-COAW0786,U,AW,West,
-COAW0790,U,AW,West,
-COAW0792,U,AW,West,
-COAW1359,U,AW,West,
-COAW1366,U,AW,West,
+COAW0786,P,AW,West,Q&D Interpretation of logger data
+COAW0790,U,AW,West,No logger data available
+COAW0792,U,AW,West,No logger data available
+COAW1359,I,AW,West,Q&D Interpretation of logger data
+COAW1366,I,AW,West,Q&D Interpretation of logger data
 COAW1383,I,AW,West,
-COAW1442,U,AW,West,
-COAW1449,U,AW,West,
-COAW1539,U,AW,West,
-COAW9104,U,AW,West,
-COAW9110,U,AW,West,
-COAW9111,U,AW,West,
+COAW1442,I,AW,West,Q&D Interpretation of logger data
+COAW1449,I,AW,West,Q&D Interpretation of logger data
+COAW1539,U,AW,West,Review more closesly. Borderline I/E
+COAW9104,E,AW,West,Q&D Interpretation of logger data
+COAW9110,E,AW,West,Q&D Interpretation of logger data
+COAW9111,U,AW,West,Looks E but data are missing for a big chunk in Spring
 COCB1,P,GP_C,GP,
 COCB120,U,GP_C,GP,
 COCB121,P,GP_C,GP,
@@ -231,22 +231,22 @@ COWM0862,I,WM,West,
 COWM0873,P,WM,West,
 COWM0876,P,WM,West,
 COWM0905,I,WM,West,
-COWM0926,U,WM,West,
+COWM0926,E,WM,West,Q&D Interpretation of logger data
 COWM0929,E,WM,West,
 COWM0940,I,WM,West,
 COWM0944,I,WM,West,
-COWM0952,U,WM,West,
+COWM0952,E,WM,West,Q&D Interpretation of logger data
 COWM0973,P,WM,West,
 COWM0989,E,WM,West,
 COWM1002,E,WM,West,
 COWM1004,I,WM,West,
 COWM1019,P,WM,West,
-COWM1029,U,WM,West,
-COWM1030,U,WM,West,
+COWM1029,U,WM,West,Review more closely. Could be I or P
+COWM1030,U,WM,West,Review more closely. Likely I
 COWM1092,P,WM,West,
 COWM1093,P,WM,West,
 COWM1156,I,WM,West,
-COWM1170,U,WM,West,
+COWM1170,U,WM,West,"Review more closely. Likely P, but field observations don't always match logger readings. Lots of ringing"
 COWM1172,P,WM,West,
 COWM1361,E,WM,West,
 COWM1368,P,WM,West,
@@ -950,7 +950,7 @@ UTWM1454,U,WM,West,
 UTWM1872,U,WM,West,
 UTWM1875,E,WM,West,
 UTWM1876,U,WM,West,
-UTWM1878,U,WM,West,
+UTWM1878,E,WM,West,Q&D Interpretation of logger data
 UTWM1879,E,WM,West,
 UTWM9094,E,WM,West,Q&D Interpretation of logger data
 UTWM9096,E,WM,West,Q&D Interpretation of logger data
