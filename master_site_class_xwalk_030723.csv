@@ -467,9 +467,9 @@ MSSE9550_B,E,SE,East,
 MSSE9555_V,E,SE,East,
 MSSE9556_V,E,SE,East,
 MSSE9557_V,P,SE,East,
-MTAW9190,U,AW,West,
-MTAW9191,U,AW,West,
-MTAW9192,U,AW,West,
+MTAW9190,U,AW,West,Looks E but data are missing for a big chunk in Spring
+MTAW9191,E,AW,West,Lots of blips but all fairly low
+MTAW9192,E,AW,West,Q&D interpretation of logger data
 MTNB14,E,GP_N,GP,
 MTNB15,E,GP_N,GP,
 MTNB19,I,GP_N,GP,
@@ -514,9 +514,9 @@ MTWM1910,E,WM,West,
 MTWM9167,U,WM,West,
 MTWM9168,U,WM,West,
 MTWM9180,U,WM,West,
-MTWM9181,U,WM,West,
-MTWM9182,U,WM,West,
-MTWM9183,U,WM,West,
+MTWM9181,E,WM,West,Q&D interpretation of logger data. But review APT tool for 6/19/2022
+MTWM9182,E,WM,West,Q&D interpretation of logger data
+MTWM9183,E,WM,West,Q&D interpretation of logger data
 NCSE9061_B,P,SE,East,
 NCSE9065_B,I,SE,East,
 NCSE9069_B,E,SE,East,

@@ -213,7 +213,7 @@ logger_cal<-read_csv("https://sdamchecker.sccwrp.org/checker/download/calibratio
 logger_cal %>% group_by(serialnumber) %>% tally() %>% filter(n>1) #Verify that no pendant ID shows up more than once
 
 #Pick a site of interest
-my_site<-"COWM1170"
+my_site<-"MTWM9181"
 
 #Get logger metadata
 my_logger_metadata<-main_df %>%
