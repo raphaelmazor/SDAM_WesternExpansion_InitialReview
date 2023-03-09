@@ -276,8 +276,8 @@ ggplot(data=my_logger_df2, aes(x=datetime, y=intensity))+
   # xlim(as_datetime("2021-12-01 01:00:00"),
        # as_datetime("2022-12-31 23:00:00"))
 
-my_logger_metadata %>% select(LoggerLocation, CollectionDate,hydro_conditions) %>% 
-  arrange(CollectionDate)
+my_logger_metadata %>% select(LoggerLocation, Lat_field, Long_field,CollectionDate,hydro_conditions) %>% 
+  arrange(CollectionDate) %>% as.data.frame()
 
 logger_data_trim_daily_rle<-my_logger_df2 %>%
   group_by(LoggerLocation, Date) %>%
