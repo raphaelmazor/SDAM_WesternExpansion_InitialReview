@@ -248,8 +248,9 @@ my_logger_metadata$SiteName
 my_logger_df<-paste0("https://sdamchecker.sccwrp.org/checker/download/logger_raw-",my_site) %>% read_csv()
 my_logger_df2<-my_logger_df %>%
   rename(PendantID=login_pendantid) %>%
-  mutate(Date = datetime %>% as_date()
-  ) %>%
+  mutate(Date = datetime %>% as_date(),
+         temperature = case_when(temperature_units=="DegC"~temperature,
+                                 T~((temperature-32)*(5/9)))) %>%
   left_join(    my_logger_metadata %>%
                   select( PendantID, CollectionDate,cutoff,LoggerLocation )) %>%
   filter(!is.na(intensity)) %>%
