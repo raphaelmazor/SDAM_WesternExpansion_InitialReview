@@ -491,19 +491,19 @@ MTNV1050,P,GP_N,GP,
 MTNV2975,E,GP_N,GP,
 MTNV2976,E,GP_N,GP,
 MTNV990,E,GP_N,GP,
-MTWM1553,U,WM,West,
+MTWM1553,E,WM,West,Q&D inspection of logger data
 MTWM1563,I,WM,West,
 MTWM1569,I,WM,West,
 MTWM1711,I,WM,West,
 MTWM1726,I,WM,West,
-MTWM1729,U,WM,West,
+MTWM1729,P,WM,West,Q&D inspection of logger data
 MTWM1736,P,WM,West,
 MTWM1753,P,WM,West,
 MTWM1785,I,WM,West,
 MTWM1813,P,WM,West,
 MTWM1815,I,WM,West,
 MTWM1835,I,WM,West,
-MTWM1836,U,WM,West,
+MTWM1836,I,WM,West,Q&D inspection of logger data
 MTWM1840,I,WM,West,
 MTWM1904,E,WM,West,
 MTWM1905,E,WM,West,
@@ -511,9 +511,9 @@ MTWM1906,P,WM,West,
 MTWM1907,I,WM,West,
 MTWM1908,E,WM,West,
 MTWM1910,E,WM,West,
-MTWM9167,U,WM,West,
-MTWM9168,U,WM,West,
-MTWM9180,U,WM,West,
+MTWM9167,E,WM,West,Q&D inspection of logger data
+MTWM9168,U,WM,West,Q&D inspection of logger data
+MTWM9180,U,WM,West,Q&D inspection of logger data
 MTWM9181,E,WM,West,Q&D interpretation of logger data. But review APT tool for 6/19/2022
 MTWM9182,E,WM,West,Q&D interpretation of logger data
 MTWM9183,E,WM,West,Q&D interpretation of logger data
@@ -562,7 +562,7 @@ NHNE9628_V,I,NE,East,
 NHNE9674_V,E,NE,East,
 NHNE9675_V,I,NE,East,
 NHNE9676_V,P,NE,East,
-NMAW1256,U,AW,West,
+NMAW1256,U,AW,West,"Review more closely. Likely P, with some freezing, but some dry readings in July are harer to interpret"
 NMAW1261,P,AW,West,
 NMAW1266,P,AW,West,
 NMAW1273,I,AW,West,
@@ -576,13 +576,13 @@ NMAW1293,I,AW,West,
 NMAW1294,E,AW,West,
 NMAW1295,E,AW,West,
 NMAW1296,E,AW,West,
-NMAW1298,U,AW,West,
+NMAW1298,U,AW,West,Review. Likely P but record is only Oct to Mar
 NMAW1299,I,AW,West,
-NMAW9036,U,AW,West,
-NMAW9037,U,AW,West,
-NMAW9043,U,AW,West,
-NMAW9044,U,AW,West,
-NMAW9045,U,AW,West,
+NMAW9036,U,AW,West,Review. I or P but loggers don't clearly agree
+NMAW9037,E,AW,West,Q&D inspection of logger data
+NMAW9043,E,AW,West,Q&D inspection of logger data
+NMAW9044,U,AW,West,Review. Logger hard to interpret. I or E
+NMAW9045,U,AW,West,Review. Looks I but field observatinos don't match logger
 NMCB33,I,GP_C,GP,
 NMCB34,I,GP_C,GP,
 NMCB35,P,GP_C,GP,
@@ -595,47 +595,47 @@ NMSB3,P,GP_S,GP,
 NMSB4,E,GP_S,GP,
 NMSV32,I,GP_S,GP,
 NMSV65,E,GP_S,GP,
-NMWM1260,U,WM,West,
+NMWM1260,U,WM,West,Looks I but dry readings could reflect ice
 NMWM1300,I,WM,West,
 NMWM1301,I,WM,West,
 NMWM1302,P,WM,West,
 NMWM1303,P,WM,West,
-NMWM1305,U,WM,West,
+NMWM1305,U,WM,West,Review. Loggeres are hard to interpret
 NMWM1311,P,WM,West,
 NMWM1314,P,WM,West,
 NMWM1316,P,WM,West,
 NMWM1318,E,WM,West,
 NMWM1319,E,WM,West,
 NMWM1320,E,WM,West,
-NMWM1328,U,WM,West,
-NMWM1332,U,WM,West,
+NMWM1328,P,WM,West,Q&D inspection of logger data
+NMWM1332,U,WM,West,Looks P but the record is short
 NMWM1333,I,WM,West,
 NMWM1335,I,WM,West,
 NMWM1856,P,WM,West,
 NMWM1857,P,WM,West,
-NMWM9051,U,WM,West,
-NMWM9054,U,WM,West,
-NMWM9055,U,WM,West,
-NMWM9063,U,WM,West,
-NVAW1179,U,AW,West,
-NVAW1182,U,AW,West,
-NVAW1187,U,AW,West,
+NMWM9051,I,WM,West,Q&D inspection of logger data
+NMWM9054,E,WM,West,Q&D inspection of logger data
+NMWM9055,E,WM,West,Q&D inspection of logger data
+NMWM9063,E,WM,West,Q&D inspection of logger data
+NVAW1179,U,AW,West,Looks P but possibly went dry for brief period in October
+NVAW1182,I,AW,West,Q&D inspection of logger data
+NVAW1187,U,AW,West,No logger data available
 NVAW1190,I,AW,West,
 NVAW1191,I,AW,West,
 NVAW1193,P,AW,West,
-NVAW1196,U,AW,West,
-NVAW1197,U,AW,West,
-NVAW1200,U,AW,West,
-NVAW1201,U,AW,West,
+NVAW1196,U,AW,West,No logger data available
+NVAW1197,I,AW,West,Q&D inspection of logger data
+NVAW1200,U,AW,West,I or E. Review more closely
+NVAW1201,P,AW,West,Q&D inspection of logger data
 NVAW1204,P,AW,West,
 NVAW1205,P,AW,West,
 NVAW1206,I,AW,West,
 NVAW1207,P,AW,West,
-NVAW1208,U,AW,West,
+NVAW1208,U,AW,West,Likely P but end of record gets hard to interpret
 NVAW1210,I,AW,West,
 NVAW1211,P,AW,West,
 NVAW1212,I,AW,West,
-NVAW1219,U,AW,West,
+NVAW1219,P,AW,West,Q&D inspection of logger data
 NVAW1231,E,AW,West,
 NVAW1234,E,AW,West,
 NVAW1236,P,AW,West,
@@ -646,11 +646,11 @@ NVAW1243,E,AW,West,
 NVAW1244,P,AW,West,
 NVAW1245,I,AW,West,
 NVAW1247,I,AW,West,
-NVAW9019,U,AW,West,
-NVAW9229,U,AW,West,
-NVAW9231,U,AW,West,
+NVAW9019,E,AW,West,Q&D inspection of logger data
+NVAW9229,E,AW,West,Q&D inspection of logger data
+NVAW9231,E,AW,West,Q&D inspection of logger data
 NVWM1255,P,WM,West,
-NVWM9034,U,WM,West,
+NVWM9034,E,WM,West,Q&D inspection of logger data
 NYNE4129_V,I,NE,East,
 NYNE8595_V,U,NE,East,
 NYNE8602_B,I,NE,East,
@@ -795,7 +795,7 @@ SDUB25,I,GP_U,GP,
 SDUB28,U,GP_U,GP,
 SDUV1557,P,GP_U,GP,
 SDUV1570,P,GP_U,GP,
-SDWM9163,U,WM,West,
+SDWM9163,I,WM,West,Q&D inspection of logger data
 TNNE2131_V,I,NE,East,
 TNNE2132_B,P,NE,East,
 TNNE7972_B,I,NE,East,
@@ -811,15 +811,15 @@ TNNE9489_B,P,NE,East,
 TNNE9490_V,P,NE,East,
 TNNE9512_B,I,NE,East,
 TNNE9513_B,I,NE,East,
-TXAW9189,U,AW,West,
-TXAW9194,U,AW,West,
-TXAW9197,U,AW,West,
-TXAW9198,U,AW,West,
-TXAW9199,U,AW,West,
-TXAW9251,U,AW,West,
-TXAW9253,U,AW,West,
-TXAW9254,U,AW,West,
-TXAW9255,U,AW,West,
+TXAW9189,E,AW,West,Q&D inspection of logger data
+TXAW9194,E,AW,West,Q&D inspection of logger data
+TXAW9197,U,AW,West,I or E depending on which logger
+TXAW9198,U,AW,West,I or E depending on which logger
+TXAW9199,I,AW,West,Q&D inspection of logger data
+TXAW9251,I,AW,West,Q&D inspection of logger data
+TXAW9253,E,AW,West,Q&D inspection of logger data
+TXAW9254,E,AW,West,Q&D inspection of logger data
+TXAW9255,U,AW,West,E or I. Very low intensity wet period could be false signal
 TXAW9256,U,AW,West,
 TXAW9273,U,AW,West,
 TXAW9276,U,AW,West,
