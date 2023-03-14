@@ -820,9 +820,9 @@ TXAW9251,I,AW,West,Q&D inspection of logger data
 TXAW9253,E,AW,West,Q&D inspection of logger data
 TXAW9254,E,AW,West,Q&D inspection of logger data
 TXAW9255,U,AW,West,E or I. Very low intensity wet period could be false signal
-TXAW9256,U,AW,West,
-TXAW9273,U,AW,West,
-TXAW9276,U,AW,West,
+TXAW9256,E,AW,West,Q&D inspection of logger data
+TXAW9273,I,AW,West,Q&D inspection of logger data
+TXAW9276,E,AW,West,Q&D inspection of logger data
 TXCB127,E,GP_C,GP,
 TXCB128,E,GP_C,GP,
 TXCB129,I,GP_C,GP,
@@ -922,34 +922,34 @@ TXSV455,P,GP_S,GP,
 TXSV65420,E,GP_S,GP,
 TXSV65431,E,GP_S,GP,
 UTAW1033,P,AW,West,
-UTAW1358,U,AW,West,
-UTAW1360,U,AW,West,
-UTAW1363,U,AW,West,
-UTAW1364,U,AW,West,
-UTAW1367,U,AW,West,
-UTAW1371,U,AW,West,
-UTAW1385,U,AW,West,
-UTAW1420,U,AW,West,
+UTAW1358,U,AW,West,Review. Probably P with frozen times
+UTAW1360,P,AW,West,Q&D inspection of logger data
+UTAW1363,E,AW,West,Q&D inspection of logger data
+UTAW1364,P,AW,West,Q&D inspection of logger data
+UTAW1367,E,AW,West,Q&D inspection of logger data
+UTAW1371,P,AW,West,Q&D inspection of logger data
+UTAW1385,P,AW,West,Q&D inspection of logger data
+UTAW1420,U,AW,West,E or I depending on length of flow
 UTAW1542,P,AW,West,
-UTAW1543,U,AW,West,
-UTAW9067,U,AW,West,
-UTAW9073,U,AW,West,
-UTAW9080,U,AW,West,
+UTAW1543,I,AW,West,Q&D inspection of logger data
+UTAW9067,U,AW,West,Likely E but could be I
+UTAW9073,E,AW,West,Q&D inspection of logger data
+UTAW9080,E,AW,West,Q&D inspection of logger data
 UTWM1015,P,WM,West,
-UTWM1091,U,WM,West,
+UTWM1091,U,WM,West,Likely E but could be I
 UTWM1096,P,WM,West,
 UTWM1150,E,WM,West,
 UTWM1152,P,WM,West,
 UTWM1363,E,WM,West,
-UTWM1389,U,WM,West,
-UTWM1408,U,WM,West,
+UTWM1389,P,WM,West,Q&D inspection of logger data
+UTWM1408,P,WM,West,Q&D inspection of logger data
 UTWM1419,P,WM,West,
 UTWM1431,I,WM,West,
 UTWM1447,I,WM,West,
-UTWM1454,U,WM,West,
-UTWM1872,U,WM,West,
+UTWM1454,P,WM,West,Q&D inspection of logger data
+UTWM1872,E,WM,West,Q&D inspection of logger data
 UTWM1875,E,WM,West,
-UTWM1876,U,WM,West,
+UTWM1876,E,WM,West,Q&D inspection of logger data
 UTWM1878,E,WM,West,Q&D Interpretation of logger data
 UTWM1879,E,WM,West,
 UTWM9094,E,WM,West,Q&D Interpretation of logger data

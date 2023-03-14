@@ -213,7 +213,7 @@ logger_cal<-read_csv("https://sdamchecker.sccwrp.org/checker/download/calibratio
 logger_cal %>% group_by(serialnumber) %>% tally() %>% filter(n>1) #Verify that no pendant ID shows up more than once
 
 #Pick a site of interest
-my_site<-"TXAW9256"
+my_site<-"UTWM1876"
 
 #Get logger metadata
 my_logger_metadata<-main_df %>%
@@ -224,7 +224,7 @@ my_logger_metadata<-main_df %>%
   bind_rows(
     main_df %>%
       filter(SiteCode==my_site) %>%
-      select(SiteCode,SiteName,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l2")) %>%
+      select(SiteCode,SiteName,Database, ParentGlobalID, CollectionDate, Assessors, Lat_field, Long_field, starts_with("l2"), SurfaceFlow_pct, SurfaceSubsurfaceFlow_pct, WaterInChannel_score, WaterInChannel_notes) %>%
       rename_all(~stringr::str_replace(.,"^l2_","")) %>%
       mutate(LoggerLocation="L2")
   ) %>%
@@ -291,7 +291,7 @@ ggplot(data=my_logger_df2, aes(x=datetime, y=value))+
 #   facet_wrap(~LoggerLocation, ncol=1)
 
 
-my_logger_metadata %>% select(LoggerLocation, Lat_field, Long_field,CollectionDate,hydro_conditions) %>% 
+my_logger_metadata %>% select(LoggerLocation, Lat_field, Long_field,CollectionDate,hydro_conditions, SurfaceFlow_pct, WaterInChannel_score, WaterInChannel_notes) %>% 
   arrange(CollectionDate) %>% as.data.frame()
 
 logger_data_trim_daily_rle<-my_logger_df2 %>%
